@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_app/controllers/auth_controller.dart';
+import 'package:task_manager_app/controllers/task_controller.dart';
+import 'package:task_manager_app/models/task_model.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final AuthController authController = AuthController();
+  final TaskController taskController = Get.put(TaskController());
   @override
   Widget build(BuildContext context) {
-    List colors = [
-      Colors.red,
-      Colors.blue,
-      Colors.yellow,
-      Colors.purple,
-      Colors.orange,
-      Colors.amber,
-    ];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -34,35 +29,88 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: Colors.grey,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Text(index.toString()),
-                        ),
-                        title: Text("Task title"),
-                        subtitle: Text("Task title"),
-                        trailing: Checkbox(value: false, onChanged: (value) {}),
-                      ),
-                    ),
-                  );
-                },
+      body: Obx(() {
+        int completed =
+            taskController.tasks.where((task) => task.isCompleted).length;
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Completed",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
+              Text(
+                "$completed/${taskController.tasks.length} Task",
+                style: TextStyle(color: Colors.grey),
+              ),
+              SizedBox(height: 10),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: taskController.tasks.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      color: Colors.grey.shade100,
+                      child: ListTile(
+                        leading: Checkbox(
+                          value: taskController.tasks[index].isCompleted,
+                          onChanged: (value) {
+                            taskController.toggleComplete(
+                              taskController.userId,
+                              value!,
+                            );
+                          },
+                        ),
+                        title: Text(taskController.tasks[index].title),
+                        subtitle: Text(taskController.tasks[index].description),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(taskController.tasks[index].date),
+                                Text(taskController.tasks[index].time),
+                              ],
+                            ),
+                            PopupMenuButton<String>(
+                              icon: Icon(Icons.more_vert),
+                              onSelected: (value) {
+                                if (value == 'update') {
+                                  // Handle update logic
+                                } else if (value == 'delete') {
+                                  // Handle delete logic
+                                }
+                              },
+                              itemBuilder:
+                                  (context) => [
+                                    PopupMenuItem(
+                                      value: 'update',
+                                      child: Text('Update'),
+                                    ),
+                                    PopupMenuItem(
+                                      value: 'delete',
+                                      child: Text('Delete'),
+                                    ),
+                                  ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Get.toNamed('/add-task'),
         label: Icon(Icons.add),
