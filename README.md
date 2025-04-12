@@ -25,11 +25,7 @@ A modern task management mobile app built with **Flutter**, **Firebase**, and **
 
 ## 📲 Screenshots
 
-_Add screenshots here (e.g., `/assets/screenshots/`)_
 
-| Login | Home | Add Task |
-|-------|------|----------|
-| ![Login](assets/screenshots/login.png) | ![Home](assets/screenshots/home.png) | ![Add](assets/screenshots/add_task.png) |
 
 ---
 
@@ -61,14 +57,11 @@ A modern task management mobile app built with **Flutter**, **Firebase**, and **
 ---
 
 ## 📲 Screenshots
+![home ](https://github.com/user-attachments/assets/89678a0d-4c40-4da1-9984-16cbf821bacd)
+![login](https://github.com/user-attachments/assets/000c0603-ab3b-40bb-a94e-23660332d9f0)
+![new task](https://github.com/user-attachments/assets/3efa844c-3085-4f17-93f0-8e9e7368a681)
 
 
-
-| Login | Home | Add Task |
-|-------|------|----------|
-| ![Login](assets/screenshots/login.png) | ![Home](assets/screenshots/home.png) | ![Add](assets/screenshots/add_task.png) |
-
-![Simulator Screenshot - iPhone 15 Pro Max - 2025-04-12 at 09 20 14](https://github.com/user-attachments/assets/b15d4ad1-247a-4519-ac6d-15281666d774)
 
 ---
 
