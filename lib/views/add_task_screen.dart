@@ -26,6 +26,7 @@ class AddTaskScreen extends StatelessWidget {
       selectedTime.value = task.time;
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
