@@ -1,3 +1,4 @@
+
 # ✅ Task Manager App
 
 A modern task management mobile app built with **Flutter**, **Firebase**, and **GetX**. Manage your daily to-dos with features like real-time syncing, task status toggling, and an intuitive interface.
@@ -66,4 +67,20 @@ A modern task management mobile app built with **Flutter**, **Firebase**, and **
 ---
 
 ## 🗂️ Project Structure
-
+lib/
+main.dart
+routes.dart
+controllers/
+auth_controller.dart
+task_controller.dart
+views/
+login_screen.dart
+register_screen.dart
+home_screen.dart
+add_task_screen.dart
+models/
+task_model.dart
+services/
+firebase_service.dart
+bindings/
+initial_bindings.dart
