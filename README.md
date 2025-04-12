@@ -1,16 +1,76 @@
-# task_manager_app
+# ✅ Task Manager App
 
-A new Flutter project.
+A modern task management mobile app built with **Flutter**, **Firebase**, and **GetX**. Manage your daily to-dos with features like real-time syncing, task status toggling, and an intuitive interface.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🔐 Firebase Authentication (Register/Login)
+- 📋 Create, Update, and Delete Tasks
+- ✅ Mark Tasks as Completed
+- 🔄 Real-Time Firestore Sync
+- 🧠 Persistent Login with GetX
+- 💡 Clean UI and UX
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠 Tech Stack
+
+- **Flutter** (Dart)
+- **Firebase Auth & Firestore**
+- **GetX** (State Management & Routing)
+
+---
+
+## 📲 Screenshots
+
+_Add screenshots here (e.g., `/assets/screenshots/`)_
+
+| Login | Home | Add Task |
+|-------|------|----------|
+| ![Login](assets/screenshots/login.png) | ![Home](assets/screenshots/home.png) | ![Add](assets/screenshots/add_task.png) |
+
+---
+
+## 🗂️ Project Structure
+
+# ✅ Task Manager App
+
+A modern task management mobile app built with **Flutter**, **Firebase**, and **GetX**. Manage your daily to-dos with features like real-time syncing, task status toggling, and an intuitive interface.
+
+---
+
+## 🚀 Features
+
+- 🔐 Firebase Authentication (Register/Login)
+- 📋 Create, Update, and Delete Tasks
+- ✅ Mark Tasks as Completed
+- 🔄 Real-Time Firestore Sync
+- 🧠 Persistent Login with GetX
+- 💡 Clean UI and UX
+
+---
+
+## 🛠 Tech Stack
+
+- **Flutter** (Dart)
+- **Firebase Auth & Firestore**
+- **GetX** (State Management & Routing)
+
+---
+
+## 📲 Screenshots
+
+
+
+| Login | Home | Add Task |
+|-------|------|----------|
+| ![Login](assets/screenshots/login.png) | ![Home](assets/screenshots/home.png) | ![Add](assets/screenshots/add_task.png) |
+
+![Simulator Screenshot - iPhone 15 Pro Max - 2025-04-12 at 09 20 14](https://github.com/user-attachments/assets/b15d4ad1-247a-4519-ac6d-15281666d774)
+
+---
+
+## 🗂️ Project Structure
+
