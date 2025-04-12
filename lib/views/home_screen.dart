@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_app/controllers/auth_controller.dart';
 import 'package:task_manager_app/controllers/task_controller.dart';
-import 'package:task_manager_app/models/task_model.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -61,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                           value: taskController.tasks[index].isCompleted,
                           onChanged: (value) {
                             taskController.toggleComplete(
-                              taskController.userId,
+                              taskController.tasks[index].id,
                               value!,
                             );
                           },
@@ -83,14 +82,20 @@ class HomeScreen extends StatelessWidget {
                               icon: Icon(Icons.more_vert),
                               onSelected: (value) {
                                 if (value == 'update') {
-                                  // Handle update logic
+                                  Get.toNamed(
+                                    "/add-task",
+                                    arguments: taskController.tasks[index],
+                                  );
                                 } else if (value == 'delete') {
-                                  // Handle delete logic
+                                  taskController.deleteTask(
+                                    taskController.tasks[index].id,
+                                  );
                                 }
                               },
                               itemBuilder:
                                   (context) => [
                                     PopupMenuItem(
+                                      onTap: () {},
                                       value: 'update',
                                       child: Text('Update'),
                                     ),
@@ -112,8 +117,9 @@ class HomeScreen extends StatelessWidget {
         );
       }),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.grey.shade100,
         onPressed: () => Get.toNamed('/add-task'),
-        label: Icon(Icons.add),
+        label: Icon(Icons.add_to_photos_outlined, color: Colors.black),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:task_manager_app/controllers/task_controller.dart';
+import 'package:task_manager_app/models/task_model.dart';
 
 class AddTaskScreen extends StatelessWidget {
   AddTaskScreen({super.key});
@@ -13,6 +14,17 @@ class AddTaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dynamic arg = Get.arguments;
+    final bool isEditing = arg != null && arg is TaskModel;
+    final TaskModel? task = isEditing ? arg as TaskModel : null;
+
+    // Pre-fill values if editing
+    if (isEditing) {
+      titleController.text = task!.title;
+      descriptionController.text = task.description;
+      selectedDate.value = task.date;
+      selectedTime.value = task.time;
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -23,7 +35,7 @@ class AddTaskScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "New Task",
+                isEditing ? "Update Task" : "New Task",
                 style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
               ),
               Text("Add title"),
@@ -78,7 +90,7 @@ class AddTaskScreen extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              _customButton(),
+              _customButton(isEditing, task),
             ],
           ),
         ),
@@ -86,7 +98,7 @@ class AddTaskScreen extends StatelessWidget {
     );
   }
 
-  Container _customButton() {
+  Container _customButton(bool isEditing, task) {
     return Container(
       width: double.infinity,
       height: 55,
@@ -110,12 +122,23 @@ class AddTaskScreen extends StatelessWidget {
           onPressed: () {
             if (titleController.text.isNotEmpty &&
                 descriptionController.text.isNotEmpty) {
-              taskController.addTask(
-                titleController.text,
-                descriptionController.text,
-                selectedDate.string,
-                selectedTime.string,
-              );
+              isEditing
+                  ? taskController.updateTask(
+                    TaskModel(
+                      description: descriptionController.text,
+                      title: titleController.text,
+                      id: task.id,
+                      date: selectedDate.string,
+                      time: selectedTime.string,
+                      isCompleted: task.isCompleted,
+                    ),
+                  )
+                  : taskController.addTask(
+                    titleController.text,
+                    descriptionController.text,
+                    selectedDate.string,
+                    selectedTime.string,
+                  );
             } else {
               Get.snackbar("Error", "Please fill all fields");
             }
@@ -131,7 +154,7 @@ class AddTaskScreen extends StatelessWidget {
               taskController.isLoading.value
                   ? CircularProgressIndicator(color: Colors.white)
                   : Text(
-                    'Add Task',
+                    isEditing ? "Update Task" : 'Add Task',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

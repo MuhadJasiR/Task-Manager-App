@@ -52,7 +52,9 @@ class TaskController extends GetxController {
     try {
       isLoading.value = true;
 
-      await _firebaseService.updateTask(userId, task);
+      await _firebaseService
+          .updateTask(userId, task)
+          .then((value) => Get.back());
     } catch (e) {
       Get.snackbar("error", e.toString());
     } finally {
